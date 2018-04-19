@@ -8,6 +8,9 @@ import "brace/mode/java";
 import AceEditor from "react-ace";
 import { tryCatchFinally, tooltips } from "./FileReaderExamples";
 import beautify from "js-beautify";
+import "antd/dist/antd.css";
+import { Form, Icon, Input, Button, Checkbox } from "antd";
+import { filterOptions, taggedSnippets } from "./data";
 class App extends Component {
   state = {
     codeShown: false
@@ -16,25 +19,15 @@ class App extends Component {
   toggle = () => {
     const { codeShown } = this.state;
     this.setState({ codeShown: !codeShown });
-    console.log("things have been clicked!");
   };
 
-  handleOnChange = newVal => {
-    console.log(newVal);
-  };
+  handleOnChange = newVal => {};
 
   render() {
+    console.log(taggedSnippets);
     const codeData = beautify(tryCatchFinally, { indent_size: 2 });
-    console.log(codeData);
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          <code>src/App.js</code> and save to reload.
-        </p>
         <button onClick={this.toggle}>Show Code</button>
         {this.state.codeShown && (
           <AceEditor
